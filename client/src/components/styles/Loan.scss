@@ -1,0 +1,96 @@
+// styles/Loan.scss
+
+.loan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+    justify-content: center;
+  
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 20px;
+  
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: #666;
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        
+        input {
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+          transition: border-color 0.3s, box-shadow 0.3s;
+  
+          &:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+          }
+        }
+  
+        button {
+          padding: 10px;
+          font-size: 1rem;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s, box-shadow 0.3s;
+  
+          &:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 91, 179, 0.5);
+          }
+  
+          &:active {
+            background-color: #004494;
+          }
+  
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  
+    .loan-info {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      
+      p {
+        font-size: 1rem;
+        color: #333;
+      }
+    }
+  }
+  

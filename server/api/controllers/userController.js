@@ -107,13 +107,58 @@ export const SendUPIMoney = async (req, res) => {
         if (user) {
             user.wallet += crypto;
             await user.save();
-            res.status(200).send({ message: "Transaction Successful" });
+            return res.status(200).send({ message: "Transaction Successful" });
         } else {
-            res.status(404).send({ message: "User Not Found" });
+            return res.status(404).send({ message: "User Not Found" });
         }
     }
     catch(err) {
-        res.status(400).json({
+        return res.status(400).json({
+            status: 'false',
+            message: err.message
+        })
+    }
+}
+
+export const takeloan= async(req,res)=>{
+    try {
+        const { amount} = req.body;
+        const userId=req.user.id;
+        const crypto = parseInt(amount);
+        const user = await User.findOne({ _id: userId });
+        if (user) {
+            user.loan += crypto;
+            user.wallet += crypto;
+            await user.save();
+            return res.status(200).send({ message: "Transaction Successful" });
+        } else {
+            return res.status(404).send({ message: "User Not Found" });
+        }
+    }
+    catch(err) {
+        return res.status(400).json({
+            status: 'false',
+            message: err.message
+        })
+    }
+}
+
+export const payloan= async(req,res)=>{
+    try {
+        const { amount} = req.body;
+        const userId=req.user.id;
+        const crypto = parseInt(amount);
+        const user = await User.findOne({ _id: userId });
+        if (user) {
+            user.loan -= crypto;
+            await user.save();
+            return res.status(200).send({ message: `You have Paid loan of ${amount} dollars` });
+        } else {
+            return res.status(404).send({ message: "User Not Found" });
+        }
+    }
+    catch(err) {
+        return res.status(400).json({
             status: 'false',
             message: err.message
         })
