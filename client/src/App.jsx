@@ -2,14 +2,20 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-
+import DashBoard from './components/DashBoard';
+import Deposit from './components/Deposit';
+import Signup from './components/Signup';
+import Signin from './components/Signin';
+import Overview from './components/Overview';
 function App() {
   return (
     <>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home/>} />
+      <Route path="/" element={<><DashBoard/><Overview/></>} />
+      <Route path="/deposit" element={<><DashBoard/><Deposit/></>} />
+      <Route path="/signup" element={<Signup/>} />
+      <Route path="/signin" element={<Signin/>} />
     </Routes>
     </BrowserRouter>
     </>
