@@ -3,6 +3,8 @@ import './styles/Deposit.scss'
 import axios from 'axios'
 import { URL } from '../utils/url'
 import { toast } from 'react-toastify'
+import Header from './Header'
+
 const Deposit = () => {
   const [dollars, setdollars] = useState();
   const loadRazorpayScript = async () => {
@@ -84,7 +86,8 @@ const Deposit = () => {
   }
   return (
     <>
-      <div className='deposit'>
+    <Header/>
+      <div className='deposit' style={{marginLeft:"200px"}}>
         <div>
           <p>Enter Amount in dollars </p>
         </div>

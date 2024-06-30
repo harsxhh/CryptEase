@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { URL } from '../utils/url';
 import './styles/Loan.scss';
-
+import Header from './Header';
 const Loan = () => {
   const [user, setUser] = useState();
   const [dollars, setDollars] = useState();
@@ -134,49 +134,62 @@ const Loan = () => {
     }
   };
 
-  return (
-    <div className="loan-container">
-      <div className="form-container">
-        <h1>Loan</h1>
-        <div>
-          <h1>Enter amount in dollars</h1>
+  return (<><Header/>
+    <div className="loan-container mt-5 ml-40 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="bg-white rounded-lg shadow-md p-4">
+        <h1 className="text-2xl font-bold mb-4">Take Loan</h1>
+        <div className="mb-4">
+          <h1 className="text-lg font-bold">Enter amount in dollars</h1>
           <form onSubmit={handleClick}>
             <input
               type="number"
               value={dollars}
               placeholder="Enter amount in dollars"
               onChange={(e) => setDollars(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <button type="submit">Submit</button>
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Submit
+            </button>
           </form>
         </div>
         {confirm && (
-          <div>
-            <h1>Confirm</h1>
+          <div className="mb-4">
+            <h1 className="text-lg font-bold">Confirm</h1>
             <p>
-              Are you sure you want to take loan of {dollars} dollars which is equal to {dollars * 83.36} INR
+              Are you sure you want to take a loan of {dollars} dollars which is equal to {dollars * 83.36} INR?
             </p>
-            <button onClick={handleSubmit}>Confirm</button>
-            <button onClick={() => setConfirm(false)}>Cancel</button>
+            <button onClick={handleSubmit} className="bg-green-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+              Confirm
+            </button>
+            <button onClick={() => setConfirm(false)} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+              Cancel
+            </button>
           </div>
         )}
       </div>
-      <div className="loan-info">
-        <h1>You have taken loan</h1>
-        <p>Amount: {user?.loan}</p>
+      <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="mb-4">
+          {/* <h1 className="text-2xl font-bold mb-4">Loan Information</h1> */}
+          <h1 className="text-lg font-bold mb-2">Pay Loan</h1>
+          <h1 className="text-lg font-bold">Total Debt: {user?.loan || 0} dollars</h1>
+        </div>
+        <div>
+          <form onSubmit={handleAddMoney}>
+            <input
+              type="number"
+              value={loan}
+              placeholder="Enter amount in dollars you want to pay"
+              onChange={(e) => setLoan(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Pay Loan
+            </button>
+          </form>
+        </div>
       </div>
-      <div className="form-container">
-        <form onSubmit={handleAddMoney}>
-          <input
-            type="number"
-            value={loan}
-            placeholder="Enter amount in dollars you want to pay"
-            onChange={(e) => setLoan(e.target.value)}
-          />
-          <button type="submit">Pay Loan</button>
-        </form>
-      </div>
-    </div>
+    </div></>
   );
 };
 

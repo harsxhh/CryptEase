@@ -1,34 +1,11 @@
-import React from 'react';
-
+import React, { useContext, useState, useEffect } from 'react';
+import { NFTContext } from '../context/NFTcontext';
+import Header from './Header';
 function DashBoard2() {
+    const { connectWallet, connectedAccount } = useContext(NFTContext);
     return (
         <div style={{ backgroundColor: "#ffffff", fontFamily: "Roboto Mono", padding: 0, margin: 0 }}>
-            <header style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                position: "fixed",
-                width: "100vw",
-                top: 0,
-                zIndex: 1000,
-                ffontFamily: "Roboto Mono",
-                backgroundColor: "#ffffff",  // Adjust background color as needed
-                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)"  // Optional: Add shadow for visual separation
-            }}>
-                <div style={{ padding: "15px 30px" }}>
-                    <h1 style={{ fontSize: "30px", margin: 0 }}>FinteX</h1>
-                </div>
-                <nav style={{ display: "flex", alignItems: "center", padding: "15px 30px" }}>
-                    <a style={{ margin: "0 15px", textDecoration: "none", color: "#333", fontWeight: "500" }} href="#">PORTFOLIO</a>
-                    <a style={{ margin: "0 15px", textDecoration: "none", color: "#333", fontWeight: "500" }} href="#">DEPOSIT</a>
-                    <a style={{ margin: "0 15px", textDecoration: "none", color: "#333", fontWeight: "500" }} href="#">LOAN</a>
-                    <a style={{ margin: "0 15px", textDecoration: "none", color: "#333", fontWeight: "500" }} href="#">INVEST</a>
-                    <a style={{ margin: "0 15px", textDecoration: "none", color: "#333", fontWeight: "500" }} href="#">NFT's</a>
-                </nav>
-                <div>
-                    <button style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>Sign Up</button>
-                </div>
-            </header>
+            <Header />
 
             <div style={{ margin: "200px 0 0 150px", borderRadius: "25px" }}>
                 <section class="bg-white dark:bg-white-900">
@@ -53,10 +30,10 @@ function DashBoard2() {
             </div>
 
             {/* three cards in flex, displaying information */}
-            <div style={{ display: "flex", justifyContent: "space-between", margin: "50px 0", fontFamily: "Roboto Mono", marginLeft:"225px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", margin: "50px 0", fontFamily: "Roboto Mono", marginLeft: "225px" }}>
                 <div style={{ width: "30%", padding: "20px", borderRadius: "25px", backgroundColor: "#f8f9fa" }}>
                     <h2 style={{ color: "black", fontSize: "20px" }}>INVEST</h2>
-                    <p style={{ color: "black", paddingBottom:"5px" }}>Invest in your future with our easy to use platform</p>
+                    <p style={{ color: "black", paddingBottom: "5px" }}>Invest in your future with our easy to use platform</p>
                     {/* horizontal line */}
 
                     <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
@@ -74,6 +51,10 @@ function DashBoard2() {
 
                 </div>
             </div>
+
+
+
+            
         </div>
     );
 }
