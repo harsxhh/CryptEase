@@ -1,54 +1,67 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
-import { URL } from '../utils/url'
-const InvestMents = () => {
+import { URL } from '../utils/url';
+
+const Investments = () => {
     const [investments, setInvestments] = useState([]);
 
     useEffect(() => {
-        const fetchData = () => {
-            axios.get(`${URL}/user/invest`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-                .then((res) => {
-                    console.log(res.data)
-                    setInvestments(res.data.investments)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${URL}/user/invest`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                setInvestments(response.data.investments);
+            } catch (error) {
+                console.error('Error fetching investments:', error);
+            }
+        };
+
         fetchData();
-    }, [])
-    console.log(investments)
+    }, []);
+
     return (
         <>
             <Header />
-            <div className="container ml-30%" style={{ marginTop: "100px" }}>
-                <div style={{ marginTop: "100px" }}>
-                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>Buy NFTs</h1>
+            <div className="container mx-20 mt-40">
+                <div className="text-center">
+                    <h1 className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>
+                        My Investments
+                    </h1>
                 </div>
-                <div className='mt-4' style={{ marginLeft: "200px" }}>
-                    {investments.length === 0 && <p className="text-left">No Investments available</p>}
-                    {investments.length > 0 && (
-                        <div className="flex flex-wrap justify-start">
-                            {investments.map((investment, index) => (
-                                <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-2">
-                                    <div className="bg-white rounded-lg shadow-md p-4">
-                                        <p className="text-lg font-bold mb-2">Investment: {investment.coinName}</p>
-                                        <p className="text-gray-600">Amount: {investment.amount}</p>
-                                        <p className="text-gray-600">Duration: {investment.duration}</p>
-                                    </div>
-                                </div>
-                            ))}
+
+                <div className="mt-8">
+                    {investments.length === 0 ? (
+                        <p className="text-center">No investments available</p>
+                    ) : (
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
+                                <thead className="bg-gray-100 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-600">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Investment</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                                    {investments.map((investment, index) => (
+                                        <tr key={index} className="bg-white dark:bg-gray-800">
+                                            <td className="px-6 py-4 whitespace-nowrap text-left">{investment.coinName}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-left">{investment.amount}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-left">{investment.duration}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     )}
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default InvestMents
+export default Investments;
