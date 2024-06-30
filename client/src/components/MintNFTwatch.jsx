@@ -66,7 +66,6 @@ const MintNFTwatch = () => {
                     }
                 } catch (err) {
                     toast.error('Error minting NFT');
-                    console.log(err);
                 }
             }
         } catch (error) {

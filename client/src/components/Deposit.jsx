@@ -65,11 +65,10 @@ const Deposit = () => {
             }
           }
           catch (err) {
-            console.log(err);
             toast.error(err.response.data.message);
           }
         } catch (err) {
-          console.log(err);
+          toast.error(err.response.data.message);
         }
       },
       theme: {
