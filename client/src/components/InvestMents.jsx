@@ -1,14 +1,14 @@
-import React, { useEffect ,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Header from './Header';
 import { URL } from '../utils/url'
 const InvestMents = () => {
     const [investments, setInvestments] = useState([]);
-    
+
     useEffect(() => {
         const fetchData = () => {
-            axios.get(`${URL}/user/invest`,{
-                headers:{
+            axios.get(`${URL}/user/invest`, {
+                headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
@@ -21,41 +21,31 @@ const InvestMents = () => {
                 })
         }
         fetchData();
-    },[])
+    }, [])
     console.log(investments)
     return (
         <>
-        <Header />
-            <div className="container ml-30%" style={{marginTop:"100px"}}>
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-2xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>Your Investments</h1>
-                    </div>
+            <Header />
+            <div className="container ml-30%" style={{ marginTop: "100px" }}>
+                <div style={{ marginTop: "100px" }}>
+                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>Buy NFTs</h1>
                 </div>
-                {investments.length === 0 ? <h1>No Investments</h1> : 
-                    <div className="row">
-                    <div className="col-md-6">
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Coin Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Duration</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               {investments?.map((investment)=>{
-                                return <tr>
-                                    <td>{investment?.coinName}</td>
-                                    <td>{investment?.amount}</td>
-                                    <td>{investment?.duration} year</td>
-                                </tr>
-                               })}
-                            </tbody>
-                        </table>
-                    </div>
+                <div className='mt-4' style={{ marginLeft: "200px" }}>
+                    {investments.length === 0 && <p className="text-left">No Investments available</p>}
+                    {investments.length > 0 && (
+                        <div className="flex flex-wrap justify-start">
+                            {investments.map((investment, index) => (
+                                <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-2">
+                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                        <p className="text-lg font-bold mb-2">Investment: {investment.coinName}</p>
+                                        <p className="text-gray-600">Amount: {investment.amount}</p>
+                                        <p className="text-gray-600">Duration: {investment.duration}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-                }
             </div>
         </>
     )

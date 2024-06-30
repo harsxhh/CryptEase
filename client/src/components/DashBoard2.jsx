@@ -8,7 +8,7 @@ function DashBoard2() {
             <Header />
 
             <div style={{ margin: "200px 0 0 150px", borderRadius: "25px" }}>
-                <section class="bg-white dark:bg-white-900">
+                <section class="flex bg-white dark:bg-white-900">
                     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                         <div class="lg:col-span-7">
                             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>
@@ -23,7 +23,7 @@ function DashBoard2() {
                         </div>
 
                         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                            <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+                            <img src="home.png" alt="mockup" style={{marginTop:"-200px"}}/>
                         </div>
                     </div>
                 </section>
@@ -31,23 +31,23 @@ function DashBoard2() {
 
             {/* three cards in flex, displaying information */}
             <div style={{ display: "flex", justifyContent: "space-between", margin: "50px 0", fontFamily: "Roboto Mono", marginLeft: "225px" }}>
-                <div style={{ width: "30%", padding: "20px", borderRadius: "25px", backgroundColor: "#f8f9fa" }}>
-                    <h2 style={{ color: "black", fontSize: "20px" }}>INVEST</h2>
+                <div style={{ width: "30%", padding: "20px", borderRadius: "25px", backgroundColor: "#f8f9fa" }} >
+                    <a href="/invest" style={{ color: "black", fontSize: "20px" }}>INVEST</a>
                     <p style={{ color: "black", paddingBottom: "5px" }}>Invest in your future with our easy to use platform</p>
                     {/* horizontal line */}
 
-                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+                    <img src="invest.png" alt="mockup" />
 
                 </div>
                 <div style={{ width: "30%", padding: "20px", borderRadius: "25px", backgroundColor: "#f8f9fa" }}>
-                    <h2 style={{ color: "black", fontSize: "20px" }}>LOAN</h2>
+                    <a href="/loan" style={{ color: "black", fontSize: "20px" }}>LOAN</a>
                     <p style={{ color: "black" }}>Get a loan to start your business</p>
-                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+                    <img src="loan.png" alt="mockup" />
                 </div>
                 <div style={{ width: "30%", padding: "20px", borderRadius: "25px", backgroundColor: "#f8f9fa" }}>
-                    <h2 style={{ color: "black", fontSize: "20px" }}>NFT's</h2>
+                    <a href="/mintnft" style={{ color: "black", fontSize: "20px" }}>NFT's</a>
                     <p style={{ color: "black" }}>Mint your own NFT's</p>
-                    <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
+                    <img src="nft.png" alt="mockup" />
 
                 </div>
             </div>
