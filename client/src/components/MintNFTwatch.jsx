@@ -25,7 +25,6 @@ const MintNFTwatch = () => {
     const togglePause = () => {
         setIsPaused(!isPaused);
     };
-
     const opts = {
         height: "390",
         width: "640",
@@ -51,6 +50,7 @@ const MintNFTwatch = () => {
         }
 
         try {
+
             const res=await NFTContract.methods.mint(connectedAccount, cid).send({ from: connectedAccount });
             if (res) {
                 try{
