@@ -33,7 +33,7 @@ function App() {
       <Route path="/mintnft/:genre" element={<><MintNFTwatch/></>} />
       <Route path="/nfts" element={<><NFTs/></>} />
       <Route path="/portfolio" element={<><Porfolio/></>} />
-      <Route path="/buynft" element={<><DashBoard/><BuyNFTs/></>} />
+      <Route path="/buynft" element={<><BuyNFTs/></>} />
     </Routes>
     </BrowserRouter>
     </>
