@@ -1,5 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import axios from 'axios';
+import Header from './Header';
 import { URL } from '../utils/url'
 const InvestMents = () => {
     const [investments, setInvestments] = useState([]);
@@ -24,10 +25,11 @@ const InvestMents = () => {
     console.log(investments)
     return (
         <>
-            <div className="container flex ml-30%">
+        <Header />
+            <div className="container ml-30%" style={{marginTop:"100px"}}>
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Investments</h1>
+                        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-2xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>Your Investments</h1>
                     </div>
                 </div>
                 {investments.length === 0 ? <h1>No Investments</h1> : 
