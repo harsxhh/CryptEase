@@ -87,7 +87,7 @@ const Deposit = () => {
   return (
     <>
     <Header/>
-      <div className='deposit' style={{marginLeft:"200px"}}>
+      {/* <div className='deposit' style={{marginLeft:"200px"}}>
         <div>
           <p>Enter Amount in dollars </p>
         </div>
@@ -96,6 +96,23 @@ const Deposit = () => {
         </div>
         <div onClick={handleAddMoney}>
           <button>Deposit</button>
+        </div>
+      </div> */}
+      <div className='bg-white rounded-lg shadow-md p-4' style={{width:"50%",marginTop:"150px",marginLeft:'400px'}}>
+        <h1 className='text-2xl font-bold mb-4'>Deposit</h1>
+        <div className='mb-4'>
+          <h1 className='text-lg font-bold'>Enter amount in dollars</h1>
+          <form onSubmit={handleAddMoney}>
+            <input
+              type='number'
+              value={dollars}
+              placeholder='Enter amount in dollars'
+              onChange={(e) => setdollars(e.target.value)}
+            />
+            <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded-md mt-2'>
+              Deposit
+            </button>
+          </form>
         </div>
       </div>
     </>

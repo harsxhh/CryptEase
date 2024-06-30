@@ -195,7 +195,7 @@ const Porfolio = () => {
                                             {nfts.map((nft, index) => {
                                                 return (
                                                     <div key={index}>
-                                                        <img src={`https://gateway.pinata.cloud/ipfs/${nft.cid}`} alt="nft" />
+                                                        <img src={`https://gateway.pinata.cloud/ipfs/${nft.cid}`} alt="nft" style={{height:"30px",width:"30px"}}/>
                                                         <p>{nft.cid}</p>
                                                     </div>
                                                 );
