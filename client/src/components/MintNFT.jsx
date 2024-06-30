@@ -22,7 +22,7 @@ const MintNFT = () => {
                     <div
                         key={index}
                         className="genre-box flex items-center justify-center w-48 h-48 rounded-lg bg-gradient-to-r from-purple-400 to-pink-500 hover:from-blue-400 hover:to-purple-500 cursor-pointer shadow-md"
-                        onClick={() => navigate(`/mintnft/${item.toLowerCase()}`)}
+                        onClick={() => navigate(`/mintnft/${item}`)}
                     >
                         <h1 className="text-white text-lg font-bold">{item}</h1>
                     </div>

@@ -79,6 +79,8 @@ const MintNFTwatch = () => {
 
     const getVideos = async () => {
         try {
+            console.log(genre);
+            console.log(data);
             const foundVideo = data.find(item => item.title === genre);
             if (foundVideo) {
                 setVideos(foundVideo);

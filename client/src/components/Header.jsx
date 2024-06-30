@@ -44,7 +44,7 @@ function Header() {
                 </nav>
                 <div>
                     {!connectedAccount && <a style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }} onClick={connectWallet}>Connect Wallet</a>}
-                    {connectedAccount && <p style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>Connected!</p>}
+                    {connectedAccount && <p style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>{connectedAccount}</p>}
                 </div>
             </header>
         </div>
