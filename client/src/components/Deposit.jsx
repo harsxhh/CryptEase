@@ -27,7 +27,6 @@ const Deposit = () => {
           rentPrice: inrAmount,
         }
       );
-      console.log(response.data);
       initPayment(response.data);
     } catch (error) {
       console.log(error);
