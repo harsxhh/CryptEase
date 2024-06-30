@@ -9,8 +9,9 @@ function Header() {
       ];
     
       const nftItems = [
-        { label: 'Explore NFTs', href: '/mintnft' },
+        { label: 'Mint NFTs', href: '/mintnft' },
         { label: 'My NFTs', href: '/nfts' },
+        {label:'Buy NFTs',href:'/buynft'}
       ];
     return (
         <div>
