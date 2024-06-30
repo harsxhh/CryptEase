@@ -15,6 +15,7 @@ import MintNFT from './components/MintNFT';
 import MintNFTwatch from './components/MintNFTwatch';
 import NFTs from './components/NFTs';
 import Porfolio from './components/Porfolio';
+import BuyNFTs from './components/BuyNFTs';
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
       <Route path="/mintnft/:genre" element={<><DashBoard/><MintNFTwatch/></>} />
       <Route path="/nfts" element={<><DashBoard/><NFTs/></>} />
       <Route path="/porfolio" element={<><DashBoard/><Porfolio/></>} />
+      <Route path="/buynft" element={<><DashBoard/><BuyNFTs/></>} />
     </Routes>
     </BrowserRouter>
     </>

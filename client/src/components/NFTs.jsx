@@ -4,6 +4,8 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 const NFTs = () => {
     const [nfts, setNfts] = useState([]);
+    const [sell, setSell] = useState(false);
+    const [nftId, setNftId] = useState('');
     useEffect(() => {
         axios.get(`${URL}/nft/getnfts`, {
             headers: {
@@ -16,7 +18,26 @@ const NFTs = () => {
             console.log(err);
         });
     }, []);
-    console.log(nfts);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const price = e.target[0].value;
+        axios.post(`${URL}/nft/sellnft`, { nftId:nftId, price }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            toast.success(res.data.message);
+            setSell(false);
+        }).catch(err => {
+            toast.error(err.response.data.message);
+            setSell(false);
+            console.log(err);
+        });
+    }
+    const handleSell = (id) => {
+        setSell(true);
+        setNftId(id);
+    }
     return (
         <>
             <div>
@@ -31,6 +52,20 @@ const NFTs = () => {
                         <img src={`https://gateway.pinata.cloud/ipfs/${nft.cid}`} alt="nft" />
                         <p>{nft.cid}</p>
                         <p>A wonderful NFT</p>
+                        <button onClick={()=>handleSell(nft._id)}> Sell NFT</button>
+                         {sell &&
+                          <div>
+                            <p>
+                                Do you really want to sell this NFT?
+                            </p>
+                            <form onSubmit={handleSubmit}> 
+                            <label>Price</label>
+                            <input type="number" placeholder="Enter price" />
+                            <button type='submit'>Sell</button>
+                            </form>
+                            <button onClick={()=>setSell(false)}>Cancel</button>
+                          </div>
+                         }
                     </div>
                 ))}
             </div>}

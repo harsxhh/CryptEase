@@ -15,6 +15,14 @@ const NFTSchema = new mongoose.Schema({
         default: false,
         required: true
     },
+    price:{
+        type: Number,
+        default: 1,
+    },
+    sold:{
+        type: Boolean,
+        default: false
+    }   
 })
 const NFT = mongoose.model('NFT', NFTSchema);
 export default NFT;
