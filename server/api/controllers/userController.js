@@ -1,4 +1,5 @@
 import User from '../modals/User.modal.js';
+import Invest from '../modals/Invest.modal.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 export const registerUser = async (req, res) => {
@@ -100,8 +101,8 @@ export const getUser = async (req, res) => {
 
 export const SendUPIMoney = async (req, res) => {
     try {
-        const { amount} = req.body;
-        const userId=req.user.id;
+        const { amount } = req.body;
+        const userId = req.user.id;
         const crypto = parseInt(amount);
         const user = await User.findOne({ _id: userId });
         if (user) {
@@ -112,7 +113,7 @@ export const SendUPIMoney = async (req, res) => {
             return res.status(404).send({ message: "User Not Found" });
         }
     }
-    catch(err) {
+    catch (err) {
         return res.status(400).json({
             status: 'false',
             message: err.message
@@ -120,10 +121,10 @@ export const SendUPIMoney = async (req, res) => {
     }
 }
 
-export const takeloan= async(req,res)=>{
+export const takeloan = async (req, res) => {
     try {
-        const { amount} = req.body;
-        const userId=req.user.id;
+        const { amount } = req.body;
+        const userId = req.user.id;
         const crypto = parseInt(amount);
         const user = await User.findOne({ _id: userId });
         if (user) {
@@ -135,7 +136,7 @@ export const takeloan= async(req,res)=>{
             return res.status(404).send({ message: "User Not Found" });
         }
     }
-    catch(err) {
+    catch (err) {
         return res.status(400).json({
             status: 'false',
             message: err.message
@@ -143,10 +144,10 @@ export const takeloan= async(req,res)=>{
     }
 }
 
-export const payloan= async(req,res)=>{
+export const payloan = async (req, res) => {
     try {
-        const { amount} = req.body;
-        const userId=req.user.id;
+        const { amount } = req.body;
+        const userId = req.user.id;
         const crypto = parseInt(amount);
         const user = await User.findOne({ _id: userId });
         if (user) {
@@ -157,7 +158,68 @@ export const payloan= async(req,res)=>{
             return res.status(404).send({ message: "User Not Found" });
         }
     }
-    catch(err) {
+    catch (err) {
+        return res.status(400).json({
+            status: 'false',
+            message: err.message
+        })
+    }
+}
+
+export const invest = async (req, res) => {
+    try {
+        const { coinName, amount, duration } = req.body;
+        if (!coinName || !amount || !duration) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'Please fill all fields'
+            })
+        }
+        const user = await User.findOne({ _id: req.user.id });
+        if (!user) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'User do not exist'
+            })
+        }
+        if (user.wallet < amount) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'Insufficient funds'
+            })
+        }
+        user.wallet -= amount;
+        await user.save();
+        const invest = new Invest({
+            userId: req.user.id,
+            coinName,
+            amount,
+            duration
+        })
+        invest.save();
+        return res.status(200).json({
+            status: 'success',
+            message: 'Investment successful'
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            status: 'false',
+            message: err.message
+        })
+    }
+}
+
+export const getinvestments = async (req, res) => {
+    try {
+        const id = req.user.id;
+        const investments = await Invest.find({ userId: id });
+        res.status(200).json({
+            status: 'success',
+            investments
+        });
+    }
+    catch(err){
         return res.status(400).json({
             status: 'false',
             message: err.message
