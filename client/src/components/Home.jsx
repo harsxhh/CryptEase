@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const Overview = () => {
+const Home = () => {
     const token=localStorage.getItem("token");
     useEffect(()=>{
           if(!token){
@@ -14,4 +14,4 @@ const Overview = () => {
   )
 }
 
-export default Overview
+export default Home
