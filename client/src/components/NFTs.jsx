@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { URL } from '../utils/url'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import Header from './Header';
 const NFTs = () => {
     const [nfts, setNfts] = useState([]);
     const [sell, setSell] = useState(false);
@@ -40,8 +41,9 @@ const NFTs = () => {
     }
     return (
         <>
-            <div>
-                <h1>Your NFTs</h1>
+        <Header />
+            <div style={{marginTop:"100px"}}>
+                <h1 h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-4xl dark:text-dark" style={{ fontFamily: "Roboto Mono" }}>Your NFTs</h1>
             </div>
             {
                 nfts.length === 0 && <p>No NFTs minted</p>

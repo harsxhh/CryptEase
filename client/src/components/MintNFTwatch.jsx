@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import {URL} from '../utils/url';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 const web3 = new Web3(window.ethereum);
 const NFTContract = new web3.eth.Contract(contractABI, contractAddress);
 let videoElement = null;
@@ -92,8 +93,9 @@ const MintNFTwatch = () => {
     }, []);
 
 
-    return (
-        <div>
+    return (<>
+    <Header />
+        <div style={{marginTop:"100px"}}>
             {videos ? (
                 <>
                     <div>
@@ -118,7 +120,7 @@ const MintNFTwatch = () => {
                     <button onClick={handleMint}>Mint NFT</button>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

@@ -33,7 +33,7 @@ const Signin = () => {
   }
 }
   return (
-    <div className="signin-container">
+    <div className="signin-container" style={{marginLeft:"200px"}}>
       <form className="signin-form" onSubmit={handleSubmit}>
         <h2>Sign In</h2>
         <div className="form-group">
