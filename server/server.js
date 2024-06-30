@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import paymentRoutes from './api/routes/paymentRoutes.js'
 import userRoutes from './api/routes/userRoutes.js'
+import nftRoutes from './api/routes/NFTRoutes.js'
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 const port=process.env.PORT||8080;
@@ -26,6 +27,7 @@ app.get("/",(req,res)=>{
 })
 app.use("/api/payment",paymentRoutes);
 app.use("/api/user",userRoutes);
+app.use("/api/nft",nftRoutes);
 connect()
 .then(()=>{
     try{

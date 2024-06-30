@@ -1,25 +1,26 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { data } from '../utils/data';
+import { data,CID } from '../utils/data';
 import { NFTContext } from '../context/NFTcontext';
 import { contractABI, contractAddress } from '../utils/constants';
 import YouTube from "react-youtube";
 import Web3 from 'web3';
 import { toast } from 'react-toastify';
-
+import {URL} from '../utils/url';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const web3 = new Web3(window.ethereum);
 const NFTContract = new web3.eth.Contract(contractABI, contractAddress);
 let videoElement = null;
 const MintNFTwatch = () => {
+    const navigate=useNavigate();
     const { genre } = useParams();
     const [videos, setVideos] = useState(null);
     const [isPaused, setIsPaused] = useState(false);
     const [videoEnded, setVideoEnded] = useState(false);
-
     const { connectedAccount } = useContext(NFTContext);
-    const [tokenURI, setTokenURI] = useState('');
-    const src = 'https://gateway.pinata.cloud/ipfs/QmfD5GoGm62v8t91xxy2UyEo9QkBRT9bM2f2Yg8Uh78Cn7';
-
+    console.log(connectedAccount);
+    const [cid, setCID] = useState('');
     const togglePause = () => {
         setIsPaused(!isPaused);
     };
@@ -38,6 +39,8 @@ const MintNFTwatch = () => {
         console.log("Video has ended");
         setVideoEnded(true);
         setIsPaused(true);
+        const index=Math.random()*CID.length+1;
+        setCID(CID[Math.floor(index)]);
     };
 
     const handleMint = async () => {
@@ -47,9 +50,26 @@ const MintNFTwatch = () => {
         }
 
         try {
-            setTokenURI(src);
-            await NFTContract.methods.mint(connectedAccount, tokenURI).send({ from: connectedAccount });
-            toast.success('NFT minted successfully!');
+            const res=await NFTContract.methods.mint(connectedAccount, cid).send({ from: connectedAccount });
+            if (res) {
+                try{
+                  const res=await axios.post(`${URL}/nft/mintnft`,{cid:cid},{
+                    headers:{
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  });
+                  if(res.status===201){
+                    toast.success('NFT minted successfully');
+                    setTimeout(()=>{
+                      navigate('/nfts')
+                    },1400)
+                  }
+                }
+                catch(err){
+                    toast.error('Error minting NFT');
+                    console.log(res);
+                }
+            }
         } catch (error) {
             console.error(error);
             toast.error('Error minting NFT');
@@ -94,7 +114,7 @@ const MintNFTwatch = () => {
             )}
             {videoEnded && (
                 <div>
-                    <img src={src} alt="NFT" />
+                    <img src={`https://gateway.pinata.cloud/ipfs/${cid}`} alt="NFT" />
                     <button onClick={handleMint}>Mint NFT</button>
                 </div>
             )}

@@ -55,3 +55,15 @@ export const data = [
         url: "OXZkm9p_zY",
     }
 ];
+
+export const CID=[
+    "QmbX9aXL67TKyxwsr1LajUABzXDXnKTrfe1vjn37JZPxf9",
+    "QmanpHiDCbmm3y7n3ytysfZaRvEaRiFec3tHVHTCtTjAEA",
+    "QmSRD82FetbmSnVyJ7Jiw8g8eKqpUJtZ9C7cFwfHm5ETc5",
+    "QmatAWQbZitpG1PxAKEHihufHhHHuZhXzBimXSkciGoTJ1",
+    "QmeiVwvodictqxjSu8Ux4dJeBsqETsPuQZmiCWwegobNZy",
+    "QmehEvEfH1FaF59QcDgbiMtckWWVDfjNhTnPHrwXdJeYzw",
+    "Qme6XrKFfEpVw1SJB8cyfT3qjBasQMVCuQkxuTmFLs2rZM",
+    "QmPyL39ssiWHN9zzaub5JsscFSzdZ9VE4cKDrzrjDhZn2j",
+    "QmY935SuLfLsK5X9Ts2YL8RSGPUqWs1cEGPygL6uDKUK7J"
+]

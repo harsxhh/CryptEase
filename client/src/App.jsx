@@ -6,12 +6,14 @@ import DashBoard from './components/DashBoard';
 import Deposit from './components/Deposit';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import Overview from './components/Overview';
+import Overview from './components/Home';
 import Invest from './components/Invest';
 import InvestMents from './components/InvestMents';
 import Loan from './components/Loan';
 import MintNFT from './components/MintNFT';
 import MintNFTwatch from './components/MintNFTwatch';
+import NFTs from './components/NFTs';
+import Porfolio from './components/Porfolio';
 function App() {
   return (
     <>
@@ -26,6 +28,8 @@ function App() {
       <Route path="/loan" element={<><DashBoard/><Loan/></>} />
       <Route path="/mintnft" element={<><DashBoard/><MintNFT/></>} />
       <Route path="/mintnft/:genre" element={<><DashBoard/><MintNFTwatch/></>} />
+      <Route path="/nfts" element={<><DashBoard/><NFTs/></>} />
+      <Route path="/porfolio" element={<><DashBoard/><Porfolio/></>} />
     </Routes>
     </BrowserRouter>
     </>
