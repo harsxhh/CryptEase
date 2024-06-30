@@ -32,6 +32,7 @@ const Signup = () => {
         navigate('/signin');
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error(error);
     }
   }

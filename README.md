@@ -57,10 +57,4 @@ The primary purpose of this project is to provide a secure and user-friendly Dec
 - **Git:** For version control.
 - **GitHub:** For hosting the project repository.
 
-## Setup and Installation
-
-### Prerequisites
-- Node.js and npm installed on your system.
-- MetaMask extension installed in your browser.
-- MongoDB instance running.
 
