@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DashBoard from './components/DashBoard';
 import DashBoard2 from './components/DashBoard2';
-import DashBoard3 from './components/Dashboard3';
+// import DashBoard3 from './components/Dashboard3';
 import Deposit from './components/Deposit';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
