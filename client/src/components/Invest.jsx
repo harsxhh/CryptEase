@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { URL } from '../utils/url';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { NFTContext } from '../context/NFTcontext';
+import { contractABI, contractAddress } from '../utils/constants';
+import Web3 from 'web3';
+const web3 = new Web3(window.ethereum);
+const NFTContract = new web3.eth.Contract(contractABI, contractAddress);
 const Invest = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const { connectedAccount, user } = useContext(NFTContext);
   const [invest, setInvest] = useState({
     coinName: 'Bitcoin',
     amount: '',
@@ -19,20 +25,45 @@ const Invest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if(invest.amount<=0 || invest.duration<=0){
+      const amountInWei = web3.utils.toWei(invest.amount.toString(), 'ether');
+      if (invest.amount <= 0 || invest.duration <= 0) {
         toast.error('Please enter a valid amount and duration');
         return;
       }
-      const response = await axios.post(`${URL}/user/invest`, invest,{
-        headers:{
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+      else if (user.wallet < invest.amount) {
+        toast.error('Insufficient funds');
+        return;
+      }
+      else if (!connectedAccount) {
+        toast.error('Please connect your wallet');
+        return;
+      }
+      try{
+        const res=await NFTContract.methods.invest(invest.coinName, amountInWei, invest.duration).send({ from: connectedAccount });
+        if (res) {
+          try{
+            const res=await axios.post(`${URL}/user/invest`,invest,{
+              headers:{
+                  Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            });
+            if(res){
+              toast.success('Investment successful');
+              navigate('/invested');
+            }
+          }
+          catch(error){
+            toast.error(error);
+            console.error('Error investing:', error);
+          }
         }
-      });
-      if(response.data.status === 'success'){
-        toast.success('Investment successful');
-        navigate('/invested');
+      }
+      catch(error){
+        toast.error(error.message);
+        console.log(error);
       }
     } catch (error) {
+      toast.error(error);
       console.error('Error investing:', error);
     }
   };
