@@ -5,29 +5,35 @@ import jwt from 'jsonwebtoken';
 export const registerUser = async (req, res) => {
     try {
         const { username, fullname, email, password } = req.body;
+        console.log(req.body)
+        console.log(username,fullname,email,password)
         if (!username || !fullname || !email || !password) {
             return res.status(400).json({
                 status: 'false',
                 message: 'Please fill all fields'
             })
         }
-        const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-        if (existingUser) {
+        const existingEmail = await User.findOne({ email });
+        if(existingEmail){
             return res.status(400).json({
-                status: "false",
-                message: "User already exists"
+                status: 'false',
+                message: 'Email already exists'
+            })  
+        }
+        const existingUsername = await User.findOne({userName:username});
+        if(existingUsername){
+            return res.status(400).json({
+                status: 'false',
+                message: 'Username already exists'
             })
         }
-        console.log(req.body)
         const passwordHash = await bcrypt.hash(password, 12);
-        console.log(passwordHash)
         const user = new User({
             userName: username,
             fullName: fullname,
             email,
             password: passwordHash
         })
-        console.log(user);
         await user.save();
         res.status(201).json({
             status: 'success',
@@ -45,12 +51,10 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         const { usernameOrEmail, password } = req.body;
-        console.log(req.body)
         if (!usernameOrEmail || !password) {
             throw new Error('Please fill all fields')
         }
-        const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] });
-        console.log(user)
+        const user = await User.findOne({ $or: [{ userName: usernameOrEmail }, { email: usernameOrEmail }] });
         if (!user) {
             return res.status(400).json({
                 status: 'false',
