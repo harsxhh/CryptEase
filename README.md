@@ -3,6 +3,20 @@
 ## Abstract
 This project is a comprehensive Decentralized Finance (DeFi) Lending Platform that provides users with a wide array of financial services in a secure and user-friendly manner. Users can sign up, deposit funds using Razorpay, take loans, repay loans, invest in various cryptocurrencies, mint NFTs by watching videos, and buy/sell NFTs on the platform. All transactions are securely managed using the Ethereum blockchain and smart contracts written in Solidity, ensuring transparency and security.
 
+## Screenshots
+![Screenshot 1](./client/src/assets/img1.png)
+![Screenshot 2](./client/src/assets/img2.png)
+![Screenshot 3](./client/src/assets/img3.png)
+
+## Video Demo
+[![Watch the video]](https://www.youtube.com/watch?v=your_video_link)
+
+## Test the App
+You can test the app using the following credentials:
+- **Username:** test
+- **Email:** test@gmail.com
+- **Password:** 123
+
 ## Detailed Description
 
 ### Purpose
@@ -56,5 +70,4 @@ The primary purpose of this project is to provide a secure and user-friendly Dec
 ### Development and Deployment
 - **Git:** For version control.
 - **GitHub:** For hosting the project repository.
-
 
