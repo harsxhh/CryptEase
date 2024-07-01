@@ -5,12 +5,13 @@ This project is a comprehensive Decentralized Finance (DeFi) Lending Platform th
 
 ## Screenshots
 ![Screenshot 1](./client/src/assets/img1.png)
-<p align="center">
+<p align="center" margin-top="3.5%">
   <img src="./client/src/assets/img2.png" alt="Screenshot 2" width="49%">
   <img src="./client/src/assets/img3.png" alt="Screenshot 3" width="49%">
 </p>
 
 ## Video Demo
+Here is the demo video link you can watch the project flow here...
 [![Watch the video]](https://www.youtube.com/watch?v=Xs85d6qPif8)
 
 ## Test the App
