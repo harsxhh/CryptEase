@@ -4,7 +4,6 @@ import { registerUser, loginUser, getUser ,SendUPIMoney,takeloan,payloan,invest,
 import { verifyToken } from '../middleware/verifyToken.js';
 
 
-
 router.get('/', verifyToken, getUser)
 router.post('/signup', registerUser);
 router.post('/signin', loginUser);

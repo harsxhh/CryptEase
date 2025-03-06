@@ -1,18 +1,25 @@
 import React from 'react'
 import { NFTContext } from '../context/NFTcontext';
 import Dropdown from './Dropdown';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Header() {
-    const { connectWallet, connectedAccount } = React.useContext(NFTContext);
+    const navigate=useNavigate();
+    const { connectWallet, connectedAccount, user } = React.useContext(NFTContext);
     const investItems = [
-        { label: 'Invest Now', href: '/invest' },
-        { label: 'Show My Investments', href: '/invested' },
-      ];
-    
-      const nftItems = [
-        { label: 'Mint NFTs', href: '/mintnft' },
-        { label: 'My NFTs', href: '/nfts' },
-        {label:'Buy NFTs',href:'/buynft'}
-      ];
+        { label: 'Invest Now', to: '/invest' },
+        { label: 'My Investments', to: '/invested' },
+    ];
+
+    const nftItems = [
+        { label: 'Mint NFTs', to: '/mintnft' },
+        { label: 'My NFTs', to: '/nfts' },
+        { label: 'Buy NFTs', to: '/buynft' }
+    ];
+    const handleLogout=()=>{
+        localStorage.removeItem('token')
+        navigate('/signin')
+    }
     return (
         <div>
             <header style={{
@@ -28,27 +35,30 @@ function Header() {
                 boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)"  // Optional: Add shadow for visual separation
             }}>
                 <div style={{ padding: "15px 30px" }}>
-                    <a href="/" style={{ fontSize: "30px", margin: 0 }}>FinteX</a>
+                    <Link to="/" style={{ fontSize: "30px", margin: 0 }}>FinteX</Link>
                 </div>
                 <nav className="flex items-center p-4">
-                    <a className="m-2 text-gray-700 font-medium hover:text-blue-500" href="/portfolio">
+                    <Link className="m-2 text-gray-700 font-medium hover:text-blue-500" to="/portfolio">
                         PORTFOLIO
-                    </a>
-                    <a className="m-2 text-gray-700 font-medium hover:text-blue-500" href="/deposit">
+                    </Link>
+                    <Link className="m-2 text-gray-700 font-medium hover:text-blue-500" to="/deposit">
                         DEPOSIT
-                    </a>
-                    <a className="m-2 text-gray-700 font-medium hover:text-blue-500" href="/loan">
+                    </Link>
+                    <Link className="m-2 text-gray-700 font-medium hover:text-blue-500" to="/loan">
                         LOAN
-                    </a>
+                    </Link>
                     <Dropdown title="INVEST" items={investItems} />
                     <Dropdown title="NFT's" items={nftItems} />
                 </nav>
                 <div>
-                    <p>Wallet Amount: </p>
+                    <p>Wallet Amount: ${user?.wallet} </p>
+                </div>
+                <div>
+                    <p onClick={handleLogout} style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>LogOut</p>
                 </div>
                 <div >
                     {!connectedAccount && <a style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }} onClick={connectWallet}>Connect Wallet</a>}
-                    {connectedAccount && <p style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>Connected!</p>}
+                    {connectedAccount && <p style={{ margin: "15px 30px", padding: "10px 20px", backgroundColor: "#f8f9fa", color: "black", border: "2px solid black", borderRadius: "25px", cursor: "pointer", fontFamily: "Montserrat" }}>{connectedAccount}</p>}
                 </div>
             </header>
         </div>

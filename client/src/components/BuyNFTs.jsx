@@ -55,7 +55,7 @@ const BuyNFTs = () => {
                                         alt="nft"
                                         className="w-full h-64 object-cover rounded-md mb-2"
                                     />
-                                    <p className="text-lg font-bold mb-2">{nft.cid}</p>
+                                    <p className="text-lg font-bold mb-2">{nft.cid.slice(0,18)+'...'}</p>
                                     <p className="text-gray-600">A wonderful NFT</p>
                                     <button
                                         onClick={() => handleBuy(nft)}

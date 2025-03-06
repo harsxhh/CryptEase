@@ -8,5 +8,3 @@ export const NFTContract = new web3.eth.Contract(
     contractABI,
     contractAddress
 );
-
-console.log(NFTContract);

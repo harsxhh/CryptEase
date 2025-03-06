@@ -3,12 +3,10 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DashBoard from './components/DashBoard';
-import DashBoard2 from './components/DashBoard2';
-// import DashBoard3 from './components/Dashboard3';
 import Deposit from './components/Deposit';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import Overview from './components/Home';
+import Home from './components/Home';
 import Invest from './components/Invest';
 import InvestMents from './components/InvestMents';
 import Loan from './components/Loan';
@@ -22,7 +20,7 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<><DashBoard2/><Overview/></>}/>
+      <Route path="/" element={<><DashBoard/><Home/></>}/>
       <Route path="/deposit" element={<><Deposit/></>} />
       <Route path="/signup" element={<Signup/>} />
       <Route path="/signin" element={<Signin/>} />

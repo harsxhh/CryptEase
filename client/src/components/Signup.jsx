@@ -19,7 +19,6 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(user);
       const response = await axios.post(`${URL}/user/signup`, user);
       if (response.status === 201) {
         toast.success('User registered successfully')
@@ -32,6 +31,7 @@ const Signup = () => {
         navigate('/signin');
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error(error);
     }
   }

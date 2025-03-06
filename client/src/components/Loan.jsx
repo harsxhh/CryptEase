@@ -39,7 +39,6 @@ const Loan = () => {
         }, 1300);
       }
     } catch (err) {
-      console.log(err);
       toast.error(err.response.data.message);
     }
   };
@@ -70,7 +69,6 @@ const Loan = () => {
       const response = await axios.post(`${URL}/payment/addBooking`, {
         rentPrice: inrAmount,
       });
-      console.log(response.data);
       initPayment(response.data);
     } catch (error) {
       console.log(error);
@@ -109,7 +107,6 @@ const Loan = () => {
               }
             }
           } catch (err) {
-            console.log(err);
             toast.error(err.response.data.message);
           }
         } catch (err) {

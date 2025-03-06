@@ -5,8 +5,6 @@ import jwt from 'jsonwebtoken';
 export const registerUser = async (req, res) => {
     try {
         const { username, fullname, email, password } = req.body;
-        console.log(req.body)
-        console.log(username,fullname,email,password)
         if (!username || !fullname || !email || !password) {
             return res.status(400).json({
                 status: 'false',
@@ -69,7 +67,6 @@ export const loginUser = async (req, res) => {
             })
         }
         const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '72h' });
-        console.log(token)
         res.status(200).json({
             status: 'success',
             message: 'User logged in successfully',

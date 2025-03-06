@@ -27,7 +27,6 @@ const Deposit = () => {
           rentPrice: inrAmount,
         }
       );
-      console.log(response.data);
       initPayment(response.data);
     } catch (error) {
       console.log(error);
@@ -66,11 +65,10 @@ const Deposit = () => {
             }
           }
           catch (err) {
-            console.log(err);
             toast.error(err.response.data.message);
           }
         } catch (err) {
-          console.log(err);
+          toast.error(err.response.data.message);
         }
       },
       theme: {
@@ -80,29 +78,19 @@ const Deposit = () => {
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
   };
-  const handleAddMoney = async () => {
+  const handleAddMoney = async (e) => {
+    e.preventDefault();
     const inrAmount = parseFloat(dollars) * 83.36;
     await handleProceed(inrAmount);
   }
   return (
     <>
     <Header/>
-      {/* <div className='deposit' style={{marginLeft:"200px"}}>
-        <div>
-          <p>Enter Amount in dollars </p>
-        </div>
-        <div>
-          <input type="text" value={dollars} placeholder="Enter Amount" onChange={(e) => setdollars(e.target.value)} />
-        </div>
-        <div onClick={handleAddMoney}>
-          <button>Deposit</button>
-        </div>
-      </div> */}
       <div className='bg-white rounded-lg shadow-md p-4' style={{width:"50%",marginTop:"150px",marginLeft:'400px'}}>
         <h1 className='text-2xl font-bold mb-4'>Deposit</h1>
         <div className='mb-4'>
           <h1 className='text-lg font-bold'>Enter amount in dollars</h1>
-          <form onSubmit={handleAddMoney}>
+          <form onSubmit={handleAddMoney} className='flex flex-col'>
             <input
               type='number'
               value={dollars}

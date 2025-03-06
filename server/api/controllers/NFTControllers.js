@@ -61,7 +61,7 @@ export const buyNFT = async (req, res) => {
             return res.status(404).json({message:"NFT not found"});
         }
         if(nft.userId.toString() === req.user.id){
-            return res.status(403).json({message:"You are not authorized to buy this NFT"});
+            return res.status(403).json({message:"You cannot buy your own NFT"});
         }
         const user = await User.findById(req.user.id);
         const seller = await User.findById(nft.userId);
